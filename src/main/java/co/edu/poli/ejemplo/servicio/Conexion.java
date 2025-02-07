@@ -6,6 +6,10 @@ public class Conexion {
     private static final String db_user = System.getenv("DB_USER");
     private static final String pass = System.getenv("DB_PASS");
     
+    /**
+     * Inicia la conexión con la base de datos
+     * @return None
+     */
     public static Connection getConnection(){
          Connection connection= null;
          try{
@@ -16,6 +20,10 @@ public class Conexion {
          return connection;
     }
     
+    /**
+     * Cierra la conexión a la base de datos.
+     * @param conn 
+     */
      public static void closeConnection(Connection conn) {
         if (conn != null) {
             try {
@@ -26,18 +34,53 @@ public class Conexion {
             }
         }
     }
-     
-    public static ResultSet executeQuery(Connection conn,String query, Object... params) {
+    
+    /**
+     * Método para ejecutar la consulta a la base de datos con los parámetros necesarios.
+     * @param conn
+     * @param query
+     * @param params
+     * @return 
+     */
+    public static ResultSet executeQuery(Connection conn, String query, Object... params) {
         ResultSet rs = null;
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
-            for (int i = 0; i < params.length; i++) {
+            if(params == null){
+                rs = stmt.executeQuery();
+            }else{
+                for (int i = 0; i < params.length; i++) {
                 stmt.setObject(i + 1, params[i]);
             }
             rs = stmt.executeQuery();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return rs;
+    }
+        /**
+         * Método para ejecutar actualizaciones o eliminaciones.
+         * @param conn
+         * @param query
+         * @param params null
+         * @return 
+         */
+        public static int executeUpdate(Connection conn, String query, Object... params) {
+        int result = 0;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            if(params == null){
+                result = stmt.executeUpdate();
+            }else{
+                for (int i = 0; i < params.length; i++) {
+                stmt.setObject(i + 1, params[i]);
+            }
+            result = stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
