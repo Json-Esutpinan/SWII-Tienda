@@ -1,6 +1,10 @@
 package co.edu.poli.ejemplo.servicio;
 import java.sql.*;
 
+/**
+ * Clase para la conexión
+ * @author jeiso
+ */
 public class Conexion {
     private static final String db_url = System.getenv("DB_URL")+"tienda"+"?serverTimezone=America/Bogota";
     private static final String db_user = System.getenv("DB_USER");
@@ -22,7 +26,7 @@ public class Conexion {
     
     /**
      * Cierra la conexión a la base de datos.
-     * @param conn 
+     * @param conn Conexion
      */
      public static void closeConnection(Connection conn) {
         if (conn != null) {
@@ -37,9 +41,9 @@ public class Conexion {
     
     /**
      * Método para ejecutar la consulta a la base de datos con los parámetros necesarios.
-     * @param conn
-     * @param query
-     * @param params
+     * @param conn Conexion
+     * @param query String
+     * @param params Variables
      * @return 
      */
     public static ResultSet executeQuery(Connection conn, String query, Object... params) {
@@ -61,8 +65,8 @@ public class Conexion {
     }
         /**
          * Método para ejecutar actualizaciones o eliminaciones.
-         * @param conn
-         * @param query
+         * @param conn Conexion
+         * @param query String
          * @param params null
          * @return 
          */

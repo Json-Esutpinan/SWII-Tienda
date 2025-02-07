@@ -5,8 +5,16 @@ import co.edu.poli.ejemplo.servicio.ClienteService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author jeiso
+ */
 public class Main {
     
+    /**
+     * Clase principal
+     * @param args  String
+     */
     public static void main (String [] args){
         Cliente cliente1 = new Cliente("1", "Jeison");
         Producto producto1 = new Producto("1", "Oreo", 1500);

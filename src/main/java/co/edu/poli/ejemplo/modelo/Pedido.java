@@ -10,10 +10,10 @@ public class Pedido {
     
     /**
      * 
-     * @param numero
-     * @param fecha
-     * @param cliente
-     * @param producto 
+     * @param numero String
+     * @param fecha String
+     * @param cliente Cliente
+     * @param producto  Producto
      */
     public Pedido(String numero, String fecha, Cliente cliente, List<Producto> producto) {    
         this.numero = numero;
@@ -88,7 +88,7 @@ public class Pedido {
 
     /**
      * Cambia la lista de todos los productos del pedido.
-     * @param producto 
+     * @param producto Producto
      */
     public void setProducto(List<Producto> producto) {
         this.producto = producto;

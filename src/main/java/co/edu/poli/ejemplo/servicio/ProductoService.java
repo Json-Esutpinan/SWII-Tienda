@@ -29,7 +29,7 @@ public class ProductoService {
     
     /**
      * Método para agregar al producto, si no se agrega, retorna falso
-     * @param producto
+     * @param producto Producto
      * @return 
      */
     public boolean insertProducto(Producto producto){
@@ -66,7 +66,7 @@ public class ProductoService {
     
     /**
      * Obtener el producto según el id
-     * @param id
+     * @param id String
      * @return Producto
      */
     public Producto getProductoById(String id){
@@ -87,7 +87,7 @@ public class ProductoService {
     
     /**
      * Método para eliminar el producto según el id.
-     * @param id 
+     * @param id  String
      */
     public boolean deleteProduct(String id){
         boolean eliminado = false;

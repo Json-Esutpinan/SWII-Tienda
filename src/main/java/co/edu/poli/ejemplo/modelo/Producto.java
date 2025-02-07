@@ -11,9 +11,9 @@ public class Producto {
     
     /**
      * Método Construtor
-     * @param id
-     * @param descripcion
-     * @param precio 
+     * @param id String
+     * @param descripcion String
+     * @param precio  String
      */
     public Producto(String id, String descripcion, double precio) {    
         this.id = id;
@@ -55,7 +55,7 @@ public class Producto {
 
     /**
      * Cambia la descripción del producto
-     * @param descripcion 
+     * @param descripcion  String
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;

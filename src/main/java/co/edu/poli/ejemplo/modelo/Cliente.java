@@ -6,8 +6,8 @@ public class Cliente {
     private String nombre;
     /**
      * Constructor de la clase Cliente, recibe dos parámetros del tipo String
-     * @param id
-     * @param nombre 
+     * @param id String
+     * @param nombre String
      */
     public Cliente(String id, String nombre) {    
         this.id = id;

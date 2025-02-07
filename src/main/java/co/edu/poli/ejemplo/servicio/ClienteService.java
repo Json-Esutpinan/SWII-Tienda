@@ -29,7 +29,7 @@ public class ClienteService {
     
     /**
      * Método para agregar un cliente a la base de datos.
-     * @param cliente
+     * @param cliente Cliente
      * @return 
      */
     public boolean insertCliente(Cliente cliente){
@@ -66,7 +66,7 @@ public class ClienteService {
     
     /**
      * Obtener el cliente según el id
-     * @param id
+     * @param id String
      * @return Cliente
      */
     public Cliente getClienteById(String id){
@@ -86,7 +86,8 @@ public class ClienteService {
     
     /**
      * Método para eliminar el cliente según el id.
-     * @param id 
+     * @param id String
+     * 
      */
     public boolean deleteCliente(String id){
         boolean eliminado = false;
