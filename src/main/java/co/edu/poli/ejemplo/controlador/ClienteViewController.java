@@ -176,7 +176,7 @@ public class ClienteViewController {
     private void actulizarCliente(ActionEvent event) {
         String id = this.fieldSearchCliente1.getText().trim();
         this.cliente = this.service.readById(id);
-        if (id != null && this.fieldUpdateClienteId.getText().isEmpty()
+        if (id != null && (this.fieldUpdateClienteId.getText().isEmpty() || this.fieldUpdateClienteId.getText() == null)
                 && this.fieldUpdateClienteNombre.getText().isEmpty() && this.cliente != null) {
             this.fieldUpdateClienteId.setText(this.cliente.getId());
             this.fieldUpdateClienteNombre.setText(this.cliente.getNombre());
@@ -195,9 +195,9 @@ public class ClienteViewController {
                 this.alerta.setContentText(message + " correctamente");
                 this.alerta.showAndWait();
                 this.fieldSearchCliente1.setEditable(true);
-                this.fieldSearchCliente1.setText(null);
-                this.fieldUpdateClienteId.setText(null);
-                this.fieldUpdateClienteNombre.setText(null);
+                this.fieldSearchCliente1.setText("");
+                this.fieldUpdateClienteId.setText("");
+                this.fieldUpdateClienteNombre.setText("");
             } else {
                 this.alerta.setAlertType(AlertType.ERROR);
                 this.alerta.setContentText(message);
