@@ -12,9 +12,15 @@ public class Producto {
     
     /**
      * Método Construtor
+<<<<<<< HEAD
      * @param id String
      * @param descripcion String
      * @param precio  String
+=======
+     * @param id
+     * @param descripcion
+     * @param precio 
+>>>>>>> e7f05925ef0a7813e92fde4f75d35f0dcab8b658
      */
     public Producto(String id, String descripcion, double precio) {    
         this.id = id;
@@ -56,7 +62,11 @@ public class Producto {
 
     /**
      * Cambia la descripción del producto
+<<<<<<< HEAD
      * @param descripcion  String
+=======
+     * @param descripcion 
+>>>>>>> e7f05925ef0a7813e92fde4f75d35f0dcab8b658
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;

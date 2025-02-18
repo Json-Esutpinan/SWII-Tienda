@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 co\edu\poli\ejemplo\vista\App.class
 co\edu\poli\ejemplo\controlador\SecondaryController.class
 co\edu\poli\ejemplo\modelo\Pedido.class
@@ -10,3 +11,6 @@ module-info.class
 co\edu\poli\ejemplo\servicio\crudDAO.class
 co\edu\poli\ejemplo\controlador\PrimaryController.class
 co\edu\poli\ejemplo\servicio\ProductoDAO.class
+=======
+co\edu\poli\ejemplo\servicio\ClienteService.class
+>>>>>>> e7f05925ef0a7813e92fde4f75d35f0dcab8b658
