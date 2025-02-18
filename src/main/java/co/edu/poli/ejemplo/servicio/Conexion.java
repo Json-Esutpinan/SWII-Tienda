@@ -1,90 +1,68 @@
 package co.edu.poli.ejemplo.servicio;
+
 import java.sql.*;
 
 /**
- * Clase para la conexión
+ * Singleton para la conexión a la base de datos
+ *
  * @author jeiso
  */
 public class Conexion {
-    private static final String db_url = System.getenv("DB_URL")+"tienda"+"?serverTimezone=America/Bogota";
-    private static final String db_user = System.getenv("DB_USER");
-    private static final String pass = System.getenv("DB_PASS");
-    
+
+    private static Conexion instancia;
+    private Connection conexion;
+
     /**
-     * Inicia la conexión con la base de datos
-     * @return None
+     * Constructor default privado para establecer la conexión
      */
-    public static Connection getConnection(){
-         Connection connection= null;
-         try{
-            connection = DriverManager.getConnection(db_url, db_user, pass);
-         }catch(SQLException e){
-             System.out.println("Error: "+e);
-         }
-         return connection;
-    }
-    
-    /**
-     * Cierra la conexión a la base de datos.
-     * @param conn Conexion
-     */
-     public static void closeConnection(Connection conn) {
-        if (conn != null) {
-            try {
-                conn.close();
-                System.out.println("Conexión cerrada");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    
-    /**
-     * Método para ejecutar la consulta a la base de datos con los parámetros necesarios.
-     * @param conn Conexion
-     * @param query String
-     * @param params Variables
-     * @return 
-     */
-    public static ResultSet executeQuery(Connection conn, String query, Object... params) {
-        ResultSet rs = null;
+    private Conexion() {
         try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            if(params == null){
-                rs = stmt.executeQuery();
-            }else{
-                for (int i = 0; i < params.length; i++) {
-                stmt.setObject(i + 1, params[i]);
-            }
-            rs = stmt.executeQuery();
-            }
+            // Obtener datos de conexión de variables de entorno
+            String url = System.getenv("DB_URL")+"tienda"+"?serverTimezone=America/Bogota";
+            String user = System.getenv("DB_USER");
+            String password = System.getenv("DB_PASS");
+
+            // Establecer la conexión
+            conexion = DriverManager.getConnection(url, user, password);
+            System.out.println("Conexión a MySQL establecida.");
+
         } catch (SQLException e) {
+            System.err.println("Error al conectar a MySQL: " + e.getMessage());
             e.printStackTrace();
         }
-        return rs;
     }
-        /**
-         * Método para ejecutar actualizaciones o eliminaciones.
-         * @param conn Conexion
-         * @param query String
-         * @param params null
-         * @return 
-         */
-        public static int executeUpdate(Connection conn, String query, Object... params) {
-        int result = 0;
+
+    /**
+     * Método estático para obtener la instancia de la clase
+     * @return Conexion
+     */
+    public static Conexion getInstancia() {
+        if (instancia == null) {
+            instancia = new Conexion();
+        }
+        return instancia;
+    }
+
+    /**
+     * Obtiene la conexión a la base de datos
+     * @return Connection
+     */
+    @SuppressWarnings("exports")
+    public Connection getConexion() {
+        return conexion;
+    }
+
+    /**
+     * Cierra la conexión a la base de datos
+     */
+    public void cerrarConexion() {
         try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            if(params == null){
-                result = stmt.executeUpdate();
-            }else{
-                for (int i = 0; i < params.length; i++) {
-                stmt.setObject(i + 1, params[i]);
-            }
-            result = stmt.executeUpdate();
+            if (conexion != null) {
+                conexion.close();
+                System.out.println("Conexión a MySQL cerrada.");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error al cerrar la conexión: " + e.getMessage());
         }
-        return result;
     }
 }

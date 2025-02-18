@@ -1,5 +1,9 @@
 package co.edu.poli.ejemplo.modelo;
 
+/**
+ * Clase cliente
+ * @author jeiso
+ */
 public class Cliente {
 
     private String id;

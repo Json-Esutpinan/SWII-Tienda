@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="389.0" prefWidth="234.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.ejemplo.controlador.ClienteViewController">
+   <children>
+      <TabPane prefHeight="389.0" prefWidth="314.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab id="TabCliente" fx:id="TabCliente" text="Agregar">
+            <content>
+              <AnchorPane minHeight="243.0" minWidth="297.0" prefHeight="358.0" prefWidth="314.0">
+                     <children>
+                        <TextField id="idCliente" fx:id="txtIdCliente" layoutX="76.0" layoutY="126.0" />
+                        <Label layoutX="132.0" layoutY="107.0" text="Id liente" />
+                        <Label contentDisplay="CENTER" layoutX="131.0" layoutY="163.0" prefHeight="19.0" prefWidth="50.0" text="Nombre" />
+                        <TextField fx:id="txtNombreCliente" layoutX="76.0" layoutY="182.0" />
+                        <Button fx:id="btAddCliente" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="222.0" mnemonicParsing="false" onAction="#agregarCliente" text="Agregar" textAlignment="CENTER" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="78.0" text="Ingresar Cliente">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Leer">
+            <content>
+              <AnchorPane minHeight="354.0" minWidth="291.0" prefHeight="358.0" prefWidth="291.0">
+                     <children>
+                        <TableView fx:id="tablaCliente" layoutX="19.0" layoutY="14.0" prefHeight="256.0" prefWidth="277.0">
+                          <columns>
+                            <TableColumn fx:id="columnId" prefWidth="77.0" text="Id" />
+                            <TableColumn fx:id="columnNombre" prefWidth="198.0" text="Nombre" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="searchAllBttn" layoutX="30.0" layoutY="284.0" mnemonicParsing="false" onAction="#leerCliente" prefHeight="27.0" prefWidth="255.0" text="Ver todos los clientes" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Buscar">
+              <content>
+                <AnchorPane minHeight="342.0" minWidth="302.0" prefHeight="342.0" prefWidth="314.0">
+                     <children>
+                        <Button fx:id="searchBttn" layoutX="129.0" layoutY="97.0" mnemonicParsing="false" onAction="#leerClienteId" text="Buscar" />
+                        <TextField fx:id="fieldSearchCliente" alignment="CENTER" layoutX="76.0" layoutY="61.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="29.0" text="Buscar Cliente por ID">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tablaClienteId" layoutX="19.0" layoutY="145.0" prefHeight="58.0" prefWidth="277.0">
+                           <columns>
+                              <TableColumn fx:id="colClienteId" prefWidth="77.0" text="Id" />
+                              <TableColumn fx:id="colClienteNombre" prefWidth="198.0" text="Nombre" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Eliminar">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="fieldDeleteCliente" alignment="CENTER" layoutX="76.0" layoutY="166.0" />
+                        <Button fx:id="deleteBttn" layoutX="125.0" layoutY="201.0" mnemonicParsing="false" onAction="#eliminarCliente" text="Eliminar" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="131.0" text="Eliminar Cliente por ID">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Actualizar">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="searchBttn1" layoutX="235.0" layoutY="48.0" mnemonicParsing="false" onAction="#actulizarCliente" text="Buscar" />
+                        <TextField fx:id="fieldSearchCliente1" layoutX="24.0" layoutY="48.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="17.0" text="Ingrese el ID del cliente a actualizar">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="fieldUpdateClienteId" editable="false" layoutX="77.0" layoutY="130.0" />
+                        <Button fx:id="updateBttn" layoutX="120.0" layoutY="199.0" mnemonicParsing="false" onAction="#actulizarCliente" text="Actualizar" />
+                        <TextField fx:id="fieldUpdateClienteNombre" layoutX="76.0" layoutY="166.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

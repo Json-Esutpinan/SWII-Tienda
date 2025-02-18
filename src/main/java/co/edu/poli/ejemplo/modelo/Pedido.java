@@ -1,6 +1,9 @@
 package co.edu.poli.ejemplo.modelo;
 import java.util.*;
-
+ /**
+  * Clase Pedido
+  * @author jeiso
+  */
 public class Pedido {
 
     private String numero;

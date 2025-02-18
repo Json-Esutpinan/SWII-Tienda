@@ -1,123 +1,163 @@
 package co.edu.poli.ejemplo.servicio;
 
+import java.util.List;
 import co.edu.poli.ejemplo.modelo.Cliente;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Servicio para la ejecución de consultas para el cliente
  */
-public class ClienteService {
-    
-    private Cliente cliente;
-    private Connection conn;
-    private String query;
+public class ClienteDAO implements crudDAO<Cliente> {
+
+    private Conexion DBinstance;
+    private Connection cursor;
+    private PreparedStatement stmt;
     private ResultSet rs;
 
-    /**
-     * Constructor para iniciar la conexión con la base de datos
-     */
-    public ClienteService() {
-        try {
-            this.conn = Conexion.getConnection();
-        } catch (Exception e) {
-            System.out.println("No se pudo conectar a la base de datos");
-        }
+    public ClienteDAO() {
+        this.DBinstance = Conexion.getInstancia();
+        this.cursor = DBinstance.getConexion();
     }
     
-    /**
-     * Método para agregar un cliente a la base de datos.
-     * @param cliente Cliente
-     * @return 
-     */
-    public boolean insertCliente(Cliente cliente){
-        boolean agregado = false;
-        int registroAgregado=0;
+    @Override
+    public String create(Cliente obj) {
+        String sql = "INSERT INTO cliente(idCliente, nombre) VALUES (?,?)";
         try {
-            this.query = "INSERT INTO cliente VALUES ('?','?')";
-            registroAgregado = Conexion.executeUpdate(this.conn, this.query, cliente.getId(),cliente.getNombre());
-            agregado = registroAgregado >0;
-        } catch (Exception e) {
-            System.out.println("Error: "+e);
-        }
-        return agregado;
-    }
-    
-    /**
-     * Obtener todos los clientes de la base de datos.
-     * @return List<Cliente>
-     */
-    public List<Cliente> getCliente(){
-        List<Cliente> listaClientes = new ArrayList();
-        try {
-            this.query = "SELECT * FROM CLIENTE";
-            this.rs = Conexion.executeQuery(conn, query, null);
-            while(rs.next()){
-                this.cliente = new Cliente(rs.getString("idCliente"),rs.getString("nombre"));
-                listaClientes.add(this.cliente);
+            this.stmt = this.cursor.prepareStatement(sql);
+            this.stmt.setString(1, obj.getId());
+            this.stmt.setString(2, obj.getNombre());
+            this.stmt.executeUpdate();
+            return "Agregado";
+        } catch (SQLException e) {
+            return e.getMessage();
+        } finally {
+            try {
+                this.stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (Exception e) {
-            System.out.println("Error: "+e);
         }
-        return listaClientes;
     }
-    
-    /**
-     * Obtener el cliente según el id
-     * @param id String
-     * @return Cliente
-     */
-    public Cliente getClienteById(String id){
-        this.cliente = new Cliente();
+
+    @Override
+    public List<Cliente> readAll() {
+        List<Cliente> listaCliente = new ArrayList<>();
+        String sql = "SELECT * FROM cliente;";
         try {
-            this.query = "SELECT * FROM cliente WHERE idCliente = ?";
-            this.rs = Conexion.executeQuery(this.conn, this.query, id);
-            while(rs.next()){
-                this.cliente.setId(rs.getString("idCliente"));
-                this.cliente.setNombre(rs.getString("nombre"));
+            this.stmt = this.cursor.prepareStatement(sql);
+            this.rs = this.stmt.executeQuery();
+            while (this.rs.next()) {
+                Cliente cliente = new Cliente(this.rs.getString("idCliente"), this.rs.getString("nombre"));
+                listaCliente.add(cliente);
             }
-        } catch (Exception e) {
-            System.out.println("Error: "+e);
+        } catch (SQLException e) {
+            System.out.println("Error:" + e);
+        } finally {
+            try {
+                this.stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                this.rs.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        return this.cliente;
+        return listaCliente;
     }
-    
-    /**
-     * Método para eliminar el cliente según el id.
-     * @param id String
-     * 
-     */
-    public boolean deleteCliente(String id){
-        boolean eliminado = false;
-        int registrosEliminados=0;
+
+    @Override
+    public Cliente readById(String id) {
+        String sql = "SELECT * FROM cliente WHERE idCliente = ?;";
+        Cliente cliente = null;
         try {
-            this.query = "DELETE FROM cliente WHERE idCliente = ?";
-            registrosEliminados = Conexion.executeUpdate(this.conn, this.query, id);
-            eliminado = registrosEliminados >0;
-        } catch (Exception e) {
-            System.out.println("Error: "+e);
+            this.stmt = this.cursor.prepareStatement(sql);
+            this.stmt.setString(1, id);
+            this.rs = this.stmt.executeQuery();
+            if (this.rs.next()) {
+                cliente = new Cliente(this.rs.getString("idCliente"), this.rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error:" + e);
+        } finally {
+            try {
+                this.stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                this.rs.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        return eliminado;
+        return cliente;
     }
-    
-    /**
-     * Método para actualizar el cliente
-     * @param clinte Cliente
-     * @return 
-     */
-    public boolean updateCliente(Cliente cliente){
-        boolean actualizado = false;
-        int registroActualizado=0;
-        try {
-            this.query = "UPDATE cliente SET nombre = ? WHERE idCliente = ?";
-            registroActualizado= Conexion.executeUpdate(this.conn, this.query, cliente.getNombre(), cliente.getId());
-            actualizado = registroActualizado >0;
-        } catch (Exception e) {
-            System.out.println("Error: "+e);
+
+    @Override
+    public String update(String id, Cliente obj) {
+        String sql = "UPDATE cliente SET nombre = ? WHERE idCliente = ?";
+        int row = 0;
+        if (this.readById(id) != null) {
+            try {
+                this.stmt = this.cursor.prepareStatement(sql);
+                this.stmt.setString(1, obj.getNombre());
+                this.stmt.setString(2, id);
+                row = this.stmt.executeUpdate();
+                if (row > 0) {
+                    return "Actualizado";
+                } else {
+                    return "No se pudo actualizar el cliente";
+                }
+            } catch (SQLException ex) {
+                return "Error:" + ex.getMessage();
+            } finally {
+                try {
+                    this.stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            return "El cliente no existe";
         }
-        return actualizado;
     }
-    
+
+    @Override
+    public Cliente delete(String id) {
+        int row = 0;
+        Cliente cli = null;
+        cli = this.readById(id);
+        String sql = "DELETE FROM cliente WHERE idCliente = ?";
+        if (cli == null) {
+            System.out.println("No existe el cliente con ID: " + id + ", no se eliminó ningún registro");
+        } else {
+            try {
+                this.stmt = this.cursor.prepareStatement(sql);
+                this.stmt.setString(1, id);
+                row = this.stmt.executeUpdate();
+                if (row > 0) {
+                    return cli;
+                }
+            } catch (SQLException e) {
+                System.out.println("Error: " + e.getMessage());
+            } finally {
+                try {
+                    this.stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cli;
+    }
 }

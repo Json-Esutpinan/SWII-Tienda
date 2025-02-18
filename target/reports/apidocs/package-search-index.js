@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"co.edu.poli.ejemplo.controlador"},{"l":"co.edu.poli.ejemplo.modelo"},{"l":"co.edu.poli.ejemplo.servicio"}];updateSearchResults();

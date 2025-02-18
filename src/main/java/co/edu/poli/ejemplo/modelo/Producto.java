@@ -2,6 +2,7 @@ package co.edu.poli.ejemplo.modelo;
 
 /**
  * Clase producto
+ * @autor jeiso
  */
 public class Producto {
     
