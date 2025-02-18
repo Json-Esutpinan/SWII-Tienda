@@ -1,6 +1,5 @@
 package co.edu.poli.ejemplo.servicio;
 
-import co.edu.poli.ejemplo.modelo.Pedido;
 import co.edu.poli.ejemplo.modelo.Producto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
