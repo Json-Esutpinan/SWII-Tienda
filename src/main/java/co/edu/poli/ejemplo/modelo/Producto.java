@@ -22,8 +22,6 @@ public class Producto {
         this.precio = precio;
     }
     
-    
-
     /**
      * Constructor para instanciar sin parámetros
      */
