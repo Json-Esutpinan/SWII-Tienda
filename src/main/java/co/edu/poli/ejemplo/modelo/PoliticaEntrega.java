@@ -1,22 +1,19 @@
 package co.edu.poli.ejemplo.modelo;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class PoliticaEntrega {
 
-    /**
-     * Default constructor
-     */
-    public PoliticaEntrega() {
+    private String descripcion;
+    
+    public PoliticaEntrega(String desc) {
+        this.descripcion = desc;
     }
 
-    /**
-     * 
-     */
-    private String descripcion;
+    @Override
+    public String toString() {
+        return "PoliticaEntrega [descripcion=" + descripcion + "]";
+    }
+
+    
+    
 
 }

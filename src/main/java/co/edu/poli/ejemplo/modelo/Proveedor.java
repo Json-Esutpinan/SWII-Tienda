@@ -26,7 +26,7 @@ public class Proveedor {
     @Override
     public String toString() {
         return "Proveedor [nombre=" + nombre + ", empresa=" + empresa + ", contacto=" + contacto + ", politica="
-                + politica + ", evaluacion=" + evaluacion + ", certificacion=" + certificacion + "]";
+                + politica + ", evaluacion=" + evaluacion + ", certificacion=" + certificacion.toString() + "]";
     }
 
 

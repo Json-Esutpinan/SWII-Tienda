@@ -1,22 +1,18 @@
 package co.edu.poli.ejemplo.modelo;
 
-import java.io.*;
-import java.util.*;
-
-/**
- * 
- */
 public class Evaluacion {
 
-    /**
-     * Default constructor
-     */
-    public Evaluacion() {
+    public Evaluacion(String desc){
+        this.descripcion = desc;
     }
 
-    /**
-     * 
-     */
     private String descripcion;
+
+    @Override
+    public String toString() {
+        return "Evaluacion [descripcion=" + descripcion + "]";
+    }
+
+    
 
 }
