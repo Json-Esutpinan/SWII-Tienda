@@ -10,8 +10,8 @@ public class Cliente {
     private String nombre;
     /**
      * Constructor de la clase Cliente, recibe dos parámetros del tipo String
-     * @param id String
-     * @param nombre String
+     * @param id
+     * @param nombre 
      */
     public Cliente(String id, String nombre) {    
         this.id = id;

@@ -13,10 +13,17 @@ public class Pedido {
     
     /**
      * 
+<<<<<<< HEAD
      * @param numero String
      * @param fecha String
      * @param cliente Cliente
      * @param producto  Producto
+=======
+     * @param numero
+     * @param fecha
+     * @param cliente
+     * @param producto 
+>>>>>>> e7f05925ef0a7813e92fde4f75d35f0dcab8b658
      */
     public Pedido(String numero, String fecha, Cliente cliente, List<Producto> producto) {    
         this.numero = numero;
@@ -91,7 +98,11 @@ public class Pedido {
 
     /**
      * Cambia la lista de todos los productos del pedido.
+<<<<<<< HEAD
      * @param producto Producto
+=======
+     * @param producto 
+>>>>>>> e7f05925ef0a7813e92fde4f75d35f0dcab8b658
      */
     public void setProducto(List<Producto> producto) {
         this.producto = producto;
