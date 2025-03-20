@@ -4,7 +4,7 @@ package co.edu.poli.ejemplo.modelo;
  *
  * @author jeiso
  */
-public class Electronico extends Producto{
+public class Electronico extends Producto implements ProductPrototype{
     private double inputVoltage;
 
     public Electronico(double inputVoltage, String id, String descripcion, double precio) {
@@ -25,5 +25,9 @@ public class Electronico extends Producto{
         return "Electronico{" + "inputVoltage=" + inputVoltage + '}';
     }
     
+    @Override
+    public ProductPrototype clone() {
+        return new Electronico(getInputVoltage(), getId(), getDescripcion(), getPrecio());
+    }
     
 }

@@ -1,5 +1,6 @@
 package co.edu.poli.ejemplo.controlador;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Optional;
 import co.edu.poli.ejemplo.excepcion.DBConexionExcepcion;
 import co.edu.poli.ejemplo.modelo.Cliente;
 import co.edu.poli.ejemplo.servicio.ClienteDAO;
+import co.edu.poli.ejemplo.vista.App;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -83,6 +85,9 @@ public class ClienteViewController {
 
     @FXML
     private Button searchBttn1;
+
+    @FXML
+    private Button vistaButton;
 
     private Cliente cliente;
 
@@ -265,5 +270,10 @@ public class ClienteViewController {
             }
         }
 
+    }
+
+    @FXML
+    void cambiarVista(ActionEvent event) throws IOException {
+        App.setRoot("ProductoView");
     }
 }

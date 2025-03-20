@@ -54,9 +54,9 @@ public class ProductoDAO implements CustomQuery<Producto> {
         this.stmt = this.cursor.prepareStatement(sql);
         this.rs = this.stmt.executeQuery();
         while (this.rs.next()) {
-            Producto prod = new Producto(this.rs.getString("idProducto"), this.rs.getString("descripcion"),
-                    this.rs.getDouble("precio"));
-            listaProducto.add(prod);
+/*             Producto prod = new Producto(this.rs.getString("idProducto"), this.rs.getString("descripcion"){},
+                    this.rs.getDouble("precio")); */
+            /* listaProducto.add(prod); */
         }
         return listaProducto;
     }
@@ -69,8 +69,8 @@ public class ProductoDAO implements CustomQuery<Producto> {
         this.stmt.setString(1, id);
         this.rs = this.stmt.executeQuery();
         if (this.rs.next()) {
-            prod = new Producto(this.rs.getString("idProducto"), this.rs.getString("descripcion"),
-                    this.rs.getDouble("precio"));
+            /* prod = new Producto(this.rs.getString("idProducto"), this.rs.getString("descripcion"),
+                    this.rs.getDouble("precio")); */
         }
         return prod;
     }
@@ -124,9 +124,10 @@ public class ProductoDAO implements CustomQuery<Producto> {
         this.rs = this.stmt.executeQuery();
         listaProductos = new ArrayList<>();
         while (this.rs.next()) {
-            listaProductos.add(new Producto(this.rs.getString("idProducto"), this.rs.getString("descripcion"),
-                    this.rs.getDouble("precio")));
+/*             listaProductos.add(new Producto(this.rs.getString("idProducto"), this.rs.getString("descripcion"),
+                    this.rs.getDouble("precio"))); */
         }
         return listaProductos;
     }
+    
 }

@@ -4,7 +4,7 @@ package co.edu.poli.ejemplo.modelo;
  *
  * @author jeiso
  */
-public class Alimento extends Producto{
+public class Alimento extends Producto implements ProductPrototype {
     private double aporteCalorico;
 
     public Alimento(String id, String descripcion, double precio, double aporteCalorico) {
@@ -24,4 +24,12 @@ public class Alimento extends Producto{
         this.aporteCalorico = aporteCalorico;
     }
 
+    public String toString() {
+        return super.toString() + " Aporte Calorico: " + aporteCalorico;
+    }
+
+    @Override
+    public ProductPrototype clone() {
+        return new Alimento(getId(), getDescripcion(), getPrecio(), getAporteCalorico());
+    }
 }
