@@ -17,9 +17,8 @@ public class App extends Application {
 
     @Override
     public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
-        scene = new Scene(loadFXML("ClienteView"), 314, 358);
+        scene = new Scene(loadFXML("ProveedorView"), 634, 508);
         stage.setScene(scene);
-        //stage.getIcons().add();
         stage.setTitle("Cliente");
         stage.show();
     }

@@ -4,8 +4,8 @@ package co.edu.poli.ejemplo.modelo;
  * Clase producto
  * @autor jeiso
  */
-public class Producto {
-    
+public abstract class Producto{
+
     private String id;
     private String descripcion;
     private double precio;
@@ -28,8 +28,6 @@ public class Producto {
         this.precio = precio;
     }
     
-    
-
     /**
      * Constructor para instanciar sin parámetros
      */
@@ -97,5 +95,4 @@ public class Producto {
         return "\n{" + "Id= " + id + ", Descripcion= " + descripcion + ", Precio= " + precio + "} \n";
     }
     
-
 }

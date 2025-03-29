@@ -1,1 +1,4 @@
 /src/main/java/co/edu/poli/ejemplo/servicio/PedidoService.java
+/target/
+*.properties
+*.log
