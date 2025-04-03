@@ -5,17 +5,19 @@ package co.edu.poli.ejemplo.modelo;
  */
 public class Documento extends Mercancia {
 
+    private double peso;
     /**
      * Default constructor
      */
     public Documento(Envio envio, double peso) {
-        super(envio, peso);
+        super(envio);
+        this.peso = peso;
         
     }
 
     @Override
-    public double calcularCosto(double peso) {
-        return peso * 1;
+    public double calcularCosto() {
+        return this.peso * 1;
     }
 
 }

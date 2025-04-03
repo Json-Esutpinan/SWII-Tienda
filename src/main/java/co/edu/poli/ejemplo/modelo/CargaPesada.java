@@ -4,14 +4,14 @@ package co.edu.poli.ejemplo.modelo;
  * 
  */
 public class CargaPesada extends Mercancia {
-
+    private double peso;
     public CargaPesada(Envio envio, double peso) {
-        super(envio, peso);
+        super(envio);
+        this.peso = peso;
     }
 
     @Override
-    public double calcularCosto(double peso) {
-        
-        return peso * 3;
+    public double calcularCosto() {
+        return this.peso * 3;
     }
 }
