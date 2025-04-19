@@ -112,9 +112,9 @@ public class flyweightController {
     @FXML
     void cambiarVista(ActionEvent event) throws IOException {
         if (event.getSource() == btnFacade) {
-            App.setRoot("facadeView", 500, 500);
+            App.setRoot("facadeView", 925, 620);
         } else if (event.getSource() == btnProxy) {
-            App.setRoot("proxyView", 248, 300);
+            App.setRoot("proxyView", 250, 320);
         }
     }
 

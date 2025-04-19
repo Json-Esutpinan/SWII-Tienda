@@ -2,6 +2,7 @@ module co.edu.poli.patrones {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.base;
+    requires javafx.graphics;
     
     opens co.edu.poli.patrones.Modelo to javafx.fxml, javafx.base;
     opens co.edu.poli.patrones.Controlador to javafx.fxml;

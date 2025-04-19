@@ -5,11 +5,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="248.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.patrones.Controlador.proxyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="248.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.poli.patrones.Controlador.proxyController">
    <children>
       <TextField fx:id="txtNombre" layoutX="43.0" layoutY="50.0" />
       <Button fx:id="logIn" layoutX="77.0" layoutY="138.0" mnemonicParsing="false" onAction="#iniciarSesion" text="Iniciar Sesion" />
       <PasswordField fx:id="txtPass" layoutX="43.0" layoutY="91.0" />
+      <Button fx:id="btnFlyweight" layoutX="65.0" layoutY="185.0" mnemonicParsing="false" onAction="#cambiarVista" text="Flyweight Pattern" />
+      <Button fx:id="btnFacade" layoutX="73.0" layoutY="229.0" mnemonicParsing="false" onAction="#cambiarVista" text="Facade Pattern" />
    </children>
 </AnchorPane>

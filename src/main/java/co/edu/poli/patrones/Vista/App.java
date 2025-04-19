@@ -19,7 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
-        scene = new Scene(loadFXML("flyweightView"), 895, 580);
+        scene = new Scene(loadFXML("facadeView"), 920, 580);
         stage.setTitle("Patrones de Diseño");
         stage.setScene(scene);
         stage.show();

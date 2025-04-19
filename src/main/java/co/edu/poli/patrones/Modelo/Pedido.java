@@ -4,16 +4,24 @@ import java.util.List;
 
 public class Pedido{
 
+    private String id;
     private Cliente cliente;
-    private String descripcion;
-    private double precio;
+    private double total;
     private List<ProductoReal> listaProductos;
     
-    public Pedido( Cliente cliente, String descripcion, double precio, List<ProductoReal> listaProductos) {
+    public Pedido(String id, Cliente cliente, List<ProductoReal> listaProductos) {
+        this.id = id;
         this.cliente = cliente;
-        this.descripcion = descripcion;
-        this.precio = precio;
+        this.total = listaProductos.stream().mapToDouble(ProductoReal::getPrecio).sum();
         this.listaProductos = listaProductos;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Cliente getCliente() {
@@ -24,20 +32,8 @@ public class Pedido{
         this.cliente = cliente;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public double getTotal() {
+        return total;
     }
 
     public List<ProductoReal> getListaProductos() {
